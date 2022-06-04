@@ -21,17 +21,17 @@ cities = ['Ahmedabad', 'Kolkata', 'Mumbai', 'Navi Mumbai', 'Pune', 'Dubai',
 LogReg = pickle.load(open('LogReg.pkl', 'rb'))
 Rf = pickle.load(open('Rf.pkl', 'rb'))
 dt_clf = pickle.load(open('dt_clf.pkl', 'rb'))
-st.title('Predict The Winning IPL Team')
+st.title('The Winning IPL Team Forecast App')
 
 
 # Load data
 @st.cache(allow_output_mutation=True)
-def load_data(nrows):
-    matches_till_2022 = pd.read_csv('Dataset/Processed_Data/Matches_Till_2022.csv', nrows=nrows)
+def load_data():
+    matches_till_2022 = pd.read_csv('Dataset/Processed_Data/Matches_Till_2022.csv')
     return matches_till_2022
 
 
-match = load_data(756)
+match = load_data()
 
 match['Team1'] = match['Team1'].str.replace('Delhi Daredevils', 'Delhi Capitals')
 match['Team2'] = match['Team2'].str.replace('Delhi Daredevils', 'Delhi Capitals')
@@ -60,8 +60,8 @@ classifier_name = st.sidebar.selectbox(
 
 season = st.sidebar.selectbox(
     'Select Season',
-    ('2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021',
-     '2022'))
+    (2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
+     2022))
 
 sel_team = st.sidebar.selectbox(
     'Select Team Name',
@@ -143,17 +143,22 @@ if st.button('Performance of Teams in selected Season'):
 
 if st.button('Show Team Stats'):
     df = match[(match['WinningTeam'] == sel_team)].groupby(['Season'])['ID'].count()
-    # print(df)
     dff = match[(match['Team1'] == sel_team) | (
             match['Team2'] == sel_team)].groupby(['Season'])['ID'].count()
-    win = df[season]
-    total = dff[season]
+    # df = dict(df)
+    # dff = dict(dff)
+    # st.write(df)
+    if season not in df or season not in dff:
+        st.error('The team did not play in this season!')
+    else:
+        win = df[season]
+        total = dff[season]
 
-    if win is None:
-        st.write("dffff")
-    loss = total - win
-    data = {'win': [win], 'loss': [loss]}
-    data = pd.DataFrame(data)
-    st.write(data)
-    data.hist()
-    st.bar_chart(data=data)
+        if win is None:
+            st.write("dffff")
+        loss = total - win
+        data = {'win': [win], 'loss': [loss]}
+        data = pd.DataFrame(data)
+        st.write(data)
+        data.hist()
+        st.bar_chart(data=data)
