@@ -98,7 +98,7 @@ if st.button('Predict Probability'):
 
     input_df = pd.DataFrame({'batting_team': [batting_team], 'bowling_team': [bowling_team],
                              'city': [selected_city], 'runs_left': [runs_left], 'balls_left': [balls_left],
-                             'wickets_left': [wickets_left], 'total_runs_x': [target], 'crr': [crr], 'rrr': [rrr]})
+                             'wickets': [wickets_left], 'total_runs_x': [target], 'crr': [crr], 'rrr': [rrr]})
 
     st.table(input_df)
     if classifier_name == "Logistic Regression":
