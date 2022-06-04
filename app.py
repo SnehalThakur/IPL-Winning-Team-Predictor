@@ -51,7 +51,7 @@ match['Team2'] = match['Team2'].str.replace('Pune Warriors', 'Rising Pune Superg
 match['Team1'] = match['Team1'].str.replace('Rising Pune Supergiants', 'Rising Pune Supergiant')
 match['Team2'] = match['Team2'].str.replace('Rising Pune Supergiants', 'Rising Pune Supergiant')
 
-st.image('Images/IPL_Background_image.jpg')
+st.image('./Images/IPL_background_image.jpg')
 
 classifier_name = st.sidebar.selectbox(
     'Select classifier',
