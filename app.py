@@ -33,23 +33,13 @@ def load_data():
 
 match = load_data()
 
-match['Team1'] = match['Team1'].str.replace('Delhi Daredevils', 'Delhi Capitals')
-match['Team2'] = match['Team2'].str.replace('Delhi Daredevils', 'Delhi Capitals')
+match['WinningTeam'] = match['WinningTeam'].str.replace('Delhi Daredevils', 'Delhi Capitals')
+match['WinningTeam'] = match['WinningTeam'].str.replace('Deccan Chargers', 'Sunrisers Hyderabad')
+match['WinningTeam'] = match['WinningTeam'].str.replace('Kings XI Punjab', 'Punjab Kings')
+match['WinningTeam'] = match['WinningTeam'].str.replace('Gujarat Lions', 'Gujarat Titans')
+match['WinningTeam'] = match['WinningTeam'].str.replace('Pune Warriors', 'Rising Pune Supergiant')
+match['WinningTeam'] = match['WinningTeam'].str.replace('Rising Pune Supergiants', 'Rising Pune Supergiant')
 
-match['Team1'] = match['Team1'].str.replace('Deccan Chargers', 'Sunrisers Hyderabad')
-match['Team2'] = match['Team2'].str.replace('Deccan Chargers', 'Sunrisers Hyderabad')
-
-match['Team1'] = match['Team1'].str.replace('Kings XI Punjab', 'Punjab Kings')
-match['Team2'] = match['Team2'].str.replace('Kings XI Punjab', 'Punjab Kings')
-
-match['Team1'] = match['Team1'].str.replace('Gujarat Lions', 'Gujarat Titans')
-match['Team2'] = match['Team2'].str.replace('Gujarat Lions', 'Gujarat Titans')
-
-match['Team1'] = match['Team1'].str.replace('Pune Warriors', 'Rising Pune Supergiant')
-match['Team2'] = match['Team2'].str.replace('Pune Warriors', 'Rising Pune Supergiant')
-
-match['Team1'] = match['Team1'].str.replace('Rising Pune Supergiants', 'Rising Pune Supergiant')
-match['Team2'] = match['Team2'].str.replace('Rising Pune Supergiants', 'Rising Pune Supergiant')
 
 st.image('./Images/IPL_background_image.jpg')
 
@@ -96,8 +86,8 @@ if st.button('Predict Probability'):
     crr = score / overs
     rrr = (runs_left * 6) / balls_left
 
-    input_df = pd.DataFrame({'batting_team': [batting_team], 'bowling_team': [bowling_team],
-                             'city': [selected_city], 'runs_left': [runs_left], 'balls_left': [balls_left],
+    input_df = pd.DataFrame({'Batting_Team': [batting_team], 'Bowling_team': [bowling_team],
+                             'City': [selected_city], 'runs_left': [runs_left], 'balls_left': [balls_left],
                              'wickets': [wickets_left], 'total_runs_x': [target], 'crr': [crr], 'rrr': [rrr]})
 
     st.table(input_df)
