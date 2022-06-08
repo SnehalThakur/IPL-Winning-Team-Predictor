@@ -109,7 +109,7 @@ if st.button('Predict Probability'):
     fig1, ax1 = plt.subplots(figsize=(2, 2))
     ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
             shadow=True, startangle=90)
-    ax1.set_title('Winnning Probability of Each Team')
+    ax1.set_title('Winning Probability of Each Team')
     # Equal aspect ratio ensures that pie is drawn as a circle.
     ax1.axis('equal')
 
