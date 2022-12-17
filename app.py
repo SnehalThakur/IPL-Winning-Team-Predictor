@@ -121,13 +121,13 @@ if st.button('Performance of Teams in selected Season'):
     match_wins = match[match['Season'] == season]['WinningTeam'].value_counts()
 
     plt.figure(figsize=(10, 7))
-    ax = sns.barplot(match_wins.index, match_wins.values, alpha=0.8)
+    ax = sns.barplot(x=match_wins.index, y=match_wins.values, alpha=0.8)
     ax.set_xticklabels(ax.get_xticklabels(), rotation=40, ha="right")
     plt.title('Performance of Each Team')
     plt.ylabel('Number of Match Wins in the Season', fontsize=12)
     plt.xlabel('Teams', fontsize=12)
     plt.tight_layout()
-    plt.show()
+    # plt.show()
     st.set_option('deprecation.showPyplotGlobalUse', False)
     st.pyplot()
 
